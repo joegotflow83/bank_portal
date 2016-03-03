@@ -15,3 +15,11 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+
+# django
+backend/bank_env/
+backend/bank/db.sqlite3
+*.pyc
+backend/.DS_Store
+backend/bank/.DS_Store
+backend/bank/bank/__pycache__/

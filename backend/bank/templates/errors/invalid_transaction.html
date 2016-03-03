@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}Invalid Transaction{% endblock title %}
+
+{% block content %}
+<h4>Transaction Failed, You do not have the sufficient funds to perform that transaction</h4>
+<a href="{% url 'create_transaction' %}" class="btn btn-success">Go Back</a>
+{% endblock %}

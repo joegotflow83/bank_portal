@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Transaction{% endblock title %}
+
+{% block content %}
+<h3>Create a new transaction</h3>
+<form method="post" action="{% url 'create_transaction' %}">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Create Transaction" class="btn btn-success">
+</form>
+{% endblock %}
