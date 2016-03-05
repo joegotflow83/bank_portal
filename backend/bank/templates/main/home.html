@@ -21,6 +21,7 @@
 <div class="col-md-8">
 <h3>Here is a list of your active accounts</h3>
 {% for account in accounts %}
+{% if account.active %}
 <table class="table table-hover">
   <tr>
     <th>Actions</th>
@@ -30,12 +31,35 @@
   </tr>
   <tr>
     <td><a href="{% url 'create_transaction' account.account_number %}" class="btn btn-success">Create Transaction</a>
-        <a href="{% url 'transfer' account.account_number %}" class="btn btn-primary">Transfer Funds</a></td>
+        <a href="{% url 'transfer' account.account_number %}" class="btn btn-primary">Transfer Funds</a>
+    <a href="{% url 'disable_account' account.account_number %}" class="btn btn-danger">Disable Account</a></td>
     <td><a href="{% url 'transaction_list' account.account_number %}">{{ account.account_number }}</a></td>
     <td>{{ account.balance }}</td>
     <td>{{ account.account_type }}</td>
   </tr>
 </table>
+{% endif %}
+{% endfor %}
+<br><br>
+<h3>Here is a list of your inactive accounts</h3>
+{% for account in accounts %}
+  {% if account.active %}
+  {% else %}
+  <table class="table table-hover">
+  <tr>
+    <th>Actions</th>
+    <th>Account Number</th>
+    <th>Balance</th>
+    <th>Account Type</th>
+  </tr>
+  <tr>
+    <td><a href="{% url 'reactivate_account' account.account_number %}" class="btn btn-success">Reactivate Account</a></td>
+    <td><a href="{% url 'transaction_list' account.account_number %}">{{ account.account_number }}</a></td>
+    <td>{{ account.balance }}</td>
+    <td>{{ account.account_type }}</td>
+  </tr>
+</table>
+{% endif %}
 {% endfor %}
 </div>
 {% endblock %}

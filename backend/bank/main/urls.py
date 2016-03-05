@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^successful_transaction/$', views.SuccessfulTransaction.as_view(), name='successful_transaction'),
     url(r'^update_info/(?P<pk>\d+)/$', views.UpdateInfo.as_view(), name='update_info'),
     url(r'^account_transfer/(?P<number>\d+)/$', views.CreateTransfer.as_view(), name='transfer'),
-    url(r'^successful_transfer/$', views.SuccessfulTransfer.as_view(), name='successful_transfer'),
     url(r'^invalid_transfer/$', views.InvalidTransfer.as_view(), name='invalid_transfer'),
+    url(r'^disable_account_success/(?P<number>\d+)/$', views.DisableAccount.as_view(), name='disable_account'),
+    url(r'^reactivate_account_success/(?P<number>\d+)/$', views.ReactivateAccount.as_view(), name='reactivate_account'),
 ]

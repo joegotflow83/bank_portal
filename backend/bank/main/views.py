@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_list_or_404, redirect
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import View, TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from datetime import datetime, timedelta
 
@@ -161,11 +161,20 @@ class CreateTransfer(CreateView):
         return reverse('home')
 
 
-class SuccessfulTransfer(TemplateView):
-    """Inform the user the transfer was successful"""
-    template_name = 'success/successful_transfer'
-
-
 class InvalidTransfer(TemplateView):
     """Let the user know that is a invalid transfer"""
     template_name = 'errors/invalid_transfer.html'
+
+
+class DisableAccount(View):
+    """Disable the users account"""
+    def get(self, request, number):
+        Account.objects.filter(account_number=number).update(active=False)
+        return render(request, 'success/disable.html')
+
+
+class ReactivateAccount(View):
+    """Reactivate the users account"""
+    def get(self, request, number):
+        Account.objects.filter(account_number=number).update(active=True)
+        return render(request, 'success/reactivate.html')
