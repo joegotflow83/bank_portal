@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.trans_type }}{% endblock title %}
+
+{% block content %}
+<h3>Transaction Details</h3>
+<p><strong>Account Number: </strong> {{ object.account_num }}</p>
+<p><strong>Transaction Type: </strong> {{  object.trans_type }}</p>
+<p><strong>Current Balance: </strong> {{  object.current_balance }}</p>
+<p><strong>Amount: </strong> {{ object.amount }}</p>
+<p><strong>Description: </strong> {{ object.description }}</p>
+<p><strong>Date and Time: </strong> {{ object.time }}</p>
+<a href="{% url 'transaction_list' object.account_num  %}" class="btn btn-success">Go Back</a>
+{% endblock %}

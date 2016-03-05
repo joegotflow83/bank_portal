@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_list_or_404, redirect
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from datetime import datetime, timedelta
 
@@ -120,6 +120,14 @@ class TransactionList(ListView):
                                time__gte=datetime.now()-timedelta(days=30))
 
 
+class TransactionDetail(DetailView):
+    """View a transaction in detail"""
+    model = Transaction
+
+    def get_queryset(self):
+        return Transaction.objects.filter(pk=self.kwargs['pk'])
+
+
 class CreateTransfer(CreateView):
     """Allow a user to transfer money between bank account"""
     model = Transaction
@@ -133,6 +141,8 @@ class CreateTransfer(CreateView):
         withdraw_account = Account.objects.get(account_number=self.kwargs['number'])
         if data.account_num == withdraw_account:
             return redirect(reverse('invalid_transfer'))
+        elif data.amount > withdraw_account.balance:
+            return redirect(reverse('invalid_transfer'))
         withdraw_account_balance = withdraw_account.balance - data.amount
         Account.objects.filter(account_number=self.kwargs['number']).update(balance=withdraw_account_balance)
         deposit_account_balance = data.account_num.balance + data.amount
@@ -140,6 +150,9 @@ class CreateTransfer(CreateView):
         data.current_balance = deposit_account_balance
         data.description = 'Transfer'
         data.trans_type = 'Deposit'
+        Transaction.objects.create(customer=self.request.user, account_num=withdraw_account,
+                                   trans_type='Withdraw', current_balance=withdraw_account_balance,
+                                   amount=data.amount, description='Transfer', time=datetime.now())
         data.save()
         return super().form_valid(form)
 
