@@ -1,0 +1,175 @@
+!_TAG_FILE_FORMAT	2	/extended format/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Łukasz Korecki	/lukasz@korecki.me/
+!_TAG_PROGRAM_NAME	CoffeeTags	//
+!_TAG_PROGRAM_URL	https://github.com/lukaszkorecki/CoffeeTags	/GitHub repository/
+!_TAG_PROGRAM_VERSION	0.6.0	//
+0001_initial.py	main/migrations/0001_initial.py	1;"	F
+0002_auto_20160303_1529.py	main/migrations/0002_auto_20160303_1529.py	1;"	F
+0003_auto_20160303_1531.py	main/migrations/0003_auto_20160303_1531.py	1;"	F
+0004_auto_20160303_1537.py	main/migrations/0004_auto_20160303_1537.py	1;"	F
+0005_auto_20160303_1557.py	main/migrations/0005_auto_20160303_1557.py	1;"	F
+0006_auto_20160303_1715.py	main/migrations/0006_auto_20160303_1715.py	1;"	F
+ALLOWED_HOSTS	bank/settings.py	/^ALLOWED_HOSTS = []$/;"	v
+AUTH_PASSWORD_VALIDATORS	bank/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	v
+Account	main/models.py	/^class Account(models.Model):$/;"	c
+AccountsConfig	accounts/apps.py	/^class AccountsConfig(AppConfig):$/;"	c
+BASE_DIR	bank/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	v
+CreateTransaction	main/views.py	/^class CreateTransaction(CreateView):$/;"	c
+DATABASES	bank/settings.py	/^DATABASES = {$/;"	v
+DEBUG	bank/settings.py	/^DEBUG = True$/;"	v
+Home	main/views.py	/^class Home(TemplateView):$/;"	c
+INSTALLED_APPS	bank/settings.py	/^INSTALLED_APPS = [$/;"	v
+LANGUAGE_CODE	bank/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	v
+LOGIN_REDIRECT_URL	bank/settings.py	/^LOGIN_REDIRECT_URL = '\/home\/'$/;"	v
+LOGIN_URL	bank/settings.py	/^LOGIN_URL = '\/accounts\/login\/'$/;"	v
+LimitedAccessMixinByCustomer	main/views.py	/^class LimitedAccessMixinByCustomer:$/;"	c
+MIDDLEWARE_CLASSES	bank/settings.py	/^MIDDLEWARE_CLASSES = [$/;"	v
+MainConfig	main/apps.py	/^class MainConfig(AppConfig):$/;"	c
+Migration	main/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	main/migrations/0002_auto_20160303_1529.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	main/migrations/0003_auto_20160303_1531.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	main/migrations/0004_auto_20160303_1537.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	main/migrations/0005_auto_20160303_1557.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	main/migrations/0006_auto_20160303_1715.py	/^class Migration(migrations.Migration):$/;"	c
+ROOT_URLCONF	bank/settings.py	/^ROOT_URLCONF = 'bank.urls'$/;"	v
+RejectedInfo	main/models.py	/^class RejectedInfo(models.Model):$/;"	c
+SECRET_KEY	bank/settings.py	/^SECRET_KEY = '#$d3$qoskz@@09=x680ht%2%2!7=#bhx1krlqs2fdz8s7nhw=1'$/;"	v
+STATIC_URL	bank/settings.py	/^STATIC_URL = '\/static\/'$/;"	v
+SetupAccount	main/views.py	/^class SetupAccount(CreateView):$/;"	c
+Signup	accounts/views.py	/^class Signup(CreateView):$/;"	c
+SuccessfulCreation	main/views.py	/^class SuccessfulCreation(TemplateView):$/;"	c
+SuccessfulTransaction	main/views.py	/^class SuccessfulTransaction(TemplateView):$/;"	c
+TEMPLATES	bank/settings.py	/^TEMPLATES = [$/;"	v
+TIME_ZONE	bank/settings.py	/^TIME_ZONE = 'America\/New_York'$/;"	v
+Transaction	main/models.py	/^class Transaction(models.Model):$/;"	c
+TransactionList	main/views.py	/^class TransactionList(LimitedAccessMixinByCustomer, ListView):$/;"	c
+USE_I18N	bank/settings.py	/^USE_I18N = True$/;"	v
+USE_L10N	bank/settings.py	/^USE_L10N = True$/;"	v
+USE_TZ	bank/settings.py	/^USE_TZ = True$/;"	v
+UpdateInfo	main/views.py	/^class UpdateInfo(UpdateView):$/;"	c
+UserInfo	main/models.py	/^class UserInfo(models.Model):$/;"	c
+WSGI_APPLICATION	bank/settings.py	/^WSGI_APPLICATION = 'bank.wsgi.application'$/;"	v
+__init__.py	accounts/__init__.py	1;"	F
+__init__.py	accounts/migrations/__init__.py	1;"	F
+__init__.py	bank/__init__.py	1;"	F
+__init__.py	main/__init__.py	1;"	F
+__init__.py	main/migrations/__init__.py	1;"	F
+account_num	main/models.py	/^    account_num = models.ForeignKey(Account)$/;"	v	class:Transaction
+account_num	main/models.py	/^    account_num = models.ForeignKey(Account)$/;"	v	class:UserInfo
+account_number	main/models.py	/^    account_number = models.IntegerField(default=gen_acc_num())$/;"	v	class:Account
+account_type	main/models.py	/^    account_type = models.CharField(max_length=10, choices=account_types)$/;"	v	class:Account
+account_types	main/models.py	/^account_types = ($/;"	v
+address	main/models.py	/^    address = models.CharField(max_length=1000)$/;"	v	class:UserInfo
+admin.py	accounts/admin.py	1;"	F
+admin.py	main/admin.py	1;"	F
+amount	main/models.py	/^    amount = models.FloatField()$/;"	v	class:Transaction
+application	bank/wsgi.py	/^application = get_wsgi_application()$/;"	v
+apps.py	accounts/apps.py	1;"	F
+apps.py	main/apps.py	1;"	F
+balance	main/models.py	/^    balance = models.FloatField(validators=[MinValueValidator(200.00)])$/;"	v	class:Account
+contact_number	main/models.py	/^    contact_number = models.IntegerField()$/;"	v	class:UserInfo
+cust	main/models.py	/^    cust = models.ForeignKey(User)$/;"	v	class:RejectedInfo
+customer	main/models.py	/^    customer = models.ForeignKey(User)$/;"	v	class:Account
+customer	main/models.py	/^    customer = models.ForeignKey(User)$/;"	v	class:Transaction
+dependencies	main/migrations/0001_initial.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	main/migrations/0002_auto_20160303_1529.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	main/migrations/0003_auto_20160303_1531.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	main/migrations/0004_auto_20160303_1537.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	main/migrations/0005_auto_20160303_1557.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	main/migrations/0006_auto_20160303_1715.py	/^    dependencies = [$/;"	v	class:Migration
+description	main/models.py	/^    description = models.CharField(max_length=1000)$/;"	v	class:Transaction
+email	main/models.py	/^    email = models.EmailField()$/;"	v	class:UserInfo
+field	main/migrations/0002_auto_20160303_1529.py	/^            field=models.IntegerField(default='8921922302457'),$/;"	v	class:Migration
+field	main/migrations/0003_auto_20160303_1531.py	/^            field=models.IntegerField(default='3642260258874'),$/;"	v	class:Migration
+field	main/migrations/0004_auto_20160303_1537.py	/^            field=models.CharField(choices=[('Checking', 'Checking'), ('Savings', 'Savings')], max_length=10),$/;"	v	class:Migration
+field	main/migrations/0004_auto_20160303_1537.py	/^            field=models.CharField(choices=[('Withdraw', 'Withdraw'), ('Deposit', 'Deposit')], max_length=10),$/;"	v	class:Migration
+field	main/migrations/0004_auto_20160303_1537.py	/^            field=models.IntegerField(default='3638045820181'),$/;"	v	class:Migration
+field	main/migrations/0005_auto_20160303_1557.py	/^            field=models.IntegerField(default='4221910739175'),$/;"	v	class:Migration
+field	main/migrations/0006_auto_20160303_1715.py	/^            field=models.FloatField(validators=[django.core.validators.MinValueValidator(200.0)]),$/;"	v	class:Migration
+field	main/migrations/0006_auto_20160303_1715.py	/^            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),$/;"	v	class:Migration
+field	main/migrations/0006_auto_20160303_1715.py	/^            field=models.IntegerField(default='1280107892205'),$/;"	v	class:Migration
+fields	main/migrations/0001_initial.py	/^            fields=[$/;"	v	class:Migration
+fields	main/views.py	/^    fields = ['balance', 'account_type']$/;"	v	class:SetupAccount
+fields	main/views.py	/^    fields = ['first_name', 'last_name', 'address', 'email', 'sex', 'contact_number']$/;"	v	class:UpdateInfo
+fields	main/views.py	/^    fields = ['trans_type', 'amount', 'description']$/;"	v	class:CreateTransaction
+first_name	main/models.py	/^    first_name = models.CharField(max_length=32)$/;"	v	class:UserInfo
+form_class	accounts/views.py	/^    form_class = UserCreationForm$/;"	v	class:Signup
+form_valid	main/views.py	/^    def form_valid(self, form):$/;"	m	class:CreateTransaction
+form_valid	main/views.py	/^    def form_valid(self, form):$/;"	m	class:SetupAccount
+gen_acc_num	main/models.py	/^def gen_acc_num():$/;"	f
+get_context_data	main/views.py	/^    def get_context_data(self, **kwargs):$/;"	m	class:Home
+get_queryset	main/views.py	/^    def get_queryset(self):$/;"	m	class:LimitedAccessMixinByCustomer
+get_success_url	accounts/views.py	/^    def get_success_url(self):$/;"	m	class:Signup
+get_success_url	main/views.py	/^    def get_success_url(self):$/;"	m	class:CreateTransaction
+get_success_url	main/views.py	/^    def get_success_url(self):$/;"	m	class:SetupAccount
+information	main/models.py	/^    information = models.CharField(max_length=1000)$/;"	v	class:RejectedInfo
+initial	main/migrations/0001_initial.py	/^    initial = True$/;"	v	class:Migration
+last_name	main/models.py	/^    last_name = models.CharField(max_length=32)$/;"	v	class:UserInfo
+manage.py	manage.py	1;"	F
+model	accounts/views.py	/^    model = User$/;"	v	class:Signup
+model	main/views.py	/^    model = Account$/;"	v	class:SetupAccount
+model	main/views.py	/^    model = Transaction$/;"	v	class:CreateTransaction
+model	main/views.py	/^    model = Transaction$/;"	v	class:TransactionList
+model	main/views.py	/^    model = UserInfo$/;"	v	class:UpdateInfo
+model_name	main/migrations/0002_auto_20160303_1529.py	/^            model_name='account',$/;"	v	class:Migration
+model_name	main/migrations/0002_auto_20160303_1529.py	/^            model_name='rejectedinfo',$/;"	v	class:Migration
+model_name	main/migrations/0002_auto_20160303_1529.py	/^            model_name='transaction',$/;"	v	class:Migration
+model_name	main/migrations/0003_auto_20160303_1531.py	/^            model_name='account',$/;"	v	class:Migration
+model_name	main/migrations/0003_auto_20160303_1531.py	/^            model_name='transaction',$/;"	v	class:Migration
+model_name	main/migrations/0004_auto_20160303_1537.py	/^            model_name='account',$/;"	v	class:Migration
+model_name	main/migrations/0004_auto_20160303_1537.py	/^            model_name='transaction',$/;"	v	class:Migration
+model_name	main/migrations/0005_auto_20160303_1557.py	/^            model_name='account',$/;"	v	class:Migration
+model_name	main/migrations/0005_auto_20160303_1557.py	/^            model_name='transaction',$/;"	v	class:Migration
+model_name	main/migrations/0006_auto_20160303_1715.py	/^            model_name='account',$/;"	v	class:Migration
+models.py	accounts/models.py	1;"	F
+models.py	main/models.py	1;"	F
+name	accounts/apps.py	/^    name = 'accounts'$/;"	v	class:AccountsConfig
+name	main/apps.py	/^    name = 'main'$/;"	v	class:MainConfig
+name	main/migrations/0001_initial.py	/^            name='Account',$/;"	v	class:Migration
+name	main/migrations/0001_initial.py	/^            name='RejectedInfo',$/;"	v	class:Migration
+name	main/migrations/0001_initial.py	/^            name='Transaction',$/;"	v	class:Migration
+name	main/migrations/0001_initial.py	/^            name='UserInfo',$/;"	v	class:Migration
+name	main/migrations/0002_auto_20160303_1529.py	/^            name='account_number',$/;"	v	class:Migration
+name	main/migrations/0003_auto_20160303_1531.py	/^            name='account_number',$/;"	v	class:Migration
+name	main/migrations/0003_auto_20160303_1531.py	/^            name='current_balance',$/;"	v	class:Migration
+name	main/migrations/0004_auto_20160303_1537.py	/^            name='account_number',$/;"	v	class:Migration
+name	main/migrations/0004_auto_20160303_1537.py	/^            name='account_type',$/;"	v	class:Migration
+name	main/migrations/0004_auto_20160303_1537.py	/^            name='trans_type',$/;"	v	class:Migration
+name	main/migrations/0005_auto_20160303_1557.py	/^            name='account_number',$/;"	v	class:Migration
+name	main/migrations/0006_auto_20160303_1715.py	/^            name='account_number',$/;"	v	class:Migration
+name	main/migrations/0006_auto_20160303_1715.py	/^            name='balance',$/;"	v	class:Migration
+name	main/migrations/0006_auto_20160303_1715.py	/^            name='customer',$/;"	v	class:Migration
+new_name	main/migrations/0002_auto_20160303_1529.py	/^            new_name='cust',$/;"	v	class:Migration
+new_name	main/migrations/0002_auto_20160303_1529.py	/^            new_name='customer',$/;"	v	class:Migration
+new_name	main/migrations/0005_auto_20160303_1557.py	/^            new_name='account_num',$/;"	v	class:Migration
+old_name	main/migrations/0002_auto_20160303_1529.py	/^            old_name='cust_id',$/;"	v	class:Migration
+old_name	main/migrations/0002_auto_20160303_1529.py	/^            old_name='customer_id',$/;"	v	class:Migration
+old_name	main/migrations/0005_auto_20160303_1557.py	/^            old_name='account_number',$/;"	v	class:Migration
+operations	main/migrations/0001_initial.py	/^    operations = [$/;"	v	class:Migration
+operations	main/migrations/0002_auto_20160303_1529.py	/^    operations = [$/;"	v	class:Migration
+operations	main/migrations/0003_auto_20160303_1531.py	/^    operations = [$/;"	v	class:Migration
+operations	main/migrations/0004_auto_20160303_1537.py	/^    operations = [$/;"	v	class:Migration
+operations	main/migrations/0005_auto_20160303_1557.py	/^    operations = [$/;"	v	class:Migration
+operations	main/migrations/0006_auto_20160303_1715.py	/^    operations = [$/;"	v	class:Migration
+preserve_default	main/migrations/0006_auto_20160303_1715.py	/^            preserve_default=False,$/;"	v	class:Migration
+settings.py	bank/settings.py	1;"	F
+sex	main/models.py	/^    sex = models.CharField(max_length=1)$/;"	v	class:UserInfo
+template_name	main/views.py	/^    template_name = 'main\/home.html'$/;"	v	class:Home
+template_name	main/views.py	/^    template_name = 'success\/successful_creation'$/;"	v	class:SuccessfulCreation
+template_name	main/views.py	/^    template_name = 'success\/successful_transaction.html'$/;"	v	class:SuccessfulTransaction
+tests.py	accounts/tests.py	1;"	F
+tests.py	main/tests.py	1;"	F
+time	main/models.py	/^    time = models.DateTimeField(auto_now_add=True)$/;"	v	class:Transaction
+trans_type	main/models.py	/^    trans_type = models.CharField(max_length=10, choices=trans_types)$/;"	v	class:Transaction
+trans_types	main/models.py	/^trans_types = ($/;"	v
+urlpatterns	accounts/urls.py	/^urlpatterns = [$/;"	v
+urlpatterns	bank/urls.py	/^urlpatterns = [$/;"	v
+urlpatterns	main/urls.py	/^urlpatterns = [$/;"	v
+urls.py	accounts/urls.py	1;"	F
+urls.py	bank/urls.py	1;"	F
+urls.py	main/urls.py	1;"	F
+user	main/models.py	/^    user = models.OneToOneField(User)$/;"	v	class:UserInfo
+views.py	accounts/views.py	1;"	F
+views.py	main/views.py	1;"	F
+wsgi.py	bank/wsgi.py	1;"	F

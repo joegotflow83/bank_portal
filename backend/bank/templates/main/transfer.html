@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block content %}
+<h3>Transfer funds between accounts</h3>
+<p>Select the bank account you want to transfer the money too.</p>
+<form method="post">
+  {% csrf_token %}
+  {{ form | as_bootstrap}}
+  <input type="submit" value="Transfer Funds" class="btn btn-success">
+</form>
+{% endblock %}

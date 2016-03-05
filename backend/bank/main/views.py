@@ -1,15 +1,22 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_list_or_404, redirect
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, UpdateView
+from datetime import datetime, timedelta
 
-from .models import Transaction
-from .models import Account
+from .models import Transaction, Account, UserInfo
 
 
 class Home(TemplateView):
     """Create the home page for when a user logs in and display their summary info"""
     template_name = 'main/home.html'
+
+    def get_context_data(self, **kwargs):
+        """Grab the users data to display on their dashboard"""
+        context = super().get_context_data(**kwargs)
+        context['accounts'] = Account.objects.filter(customer=self.request.user)
+        context['userinfo'] = UserInfo.objects.filter(user=self.request.user)
+        return context
 
 
 class CreateTransaction(CreateView):
@@ -20,7 +27,7 @@ class CreateTransaction(CreateView):
     def form_valid(self, form):
         """Validate if the user has the correct balance to perform the following action"""
         data = form.save(commit=False)
-        account = Account.objects.get(customer=self.request.user)
+        account = Account.objects.get(account_number=self.kwargs['number'])
         data.customer = self.request.user
         data.account_num = account
         if data.trans_type == 'Withdraw':
@@ -28,12 +35,18 @@ class CreateTransaction(CreateView):
                 return render(self.request, 'errors/invalid_transaction.html')
             else:
                 new_balance = account.balance - data.amount
+                data.current_balance = new_balance
                 Account.objects.filter(customer=self.request.user).update(balance=new_balance)
         else:
             new_balance = account.balance + data.amount
+            data.current_balance = new_balance
             Account.objects.filter(customer=self.request.user).update(balance=new_balance)
         data.save()
-        return redirect(reverse('successful_transaction'))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        """Let users know their creation was successful"""
+        return reverse('successful_transaction')
 
 
 class SuccessfulTransaction(TemplateView):
@@ -46,11 +59,100 @@ class SetupAccount(CreateView):
     model = Account
     fields = ['balance', 'account_type']
 
+    def form_valid(self, form):
+        """Validate the form"""
+        data = form.save(commit=False)
+        data.customer = self.request.user
+        data.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
         """Let the user know their bank account was created successfully"""
-        return redirect(reverse('successful_creation'))
+        return reverse('home')
 
 
 class SuccessfulCreation(TemplateView):
     """Let the user know the creation was successful"""
     template_name = 'success/successful_creation'
+
+
+class SetupInfo(CreateView):
+    """Allow a user to create their user info"""
+    model = UserInfo
+    fields = ['first_name', 'last_name', 'address', 'email', 'sex', 'contact_number']
+
+    def form_valid(self, form):
+        """Validate the form"""
+        data = form.save(commit=False)
+        data.user = self.request.user
+        data.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        """Redirect the user to their dashboard"""
+        return reverse('home')
+
+
+class UpdateInfo(UpdateView):
+    """Allow a user to update their user info"""
+    model = UserInfo
+    template_name = 'main/update_userinfo.html'
+    fields = ['first_name', 'last_name', 'address', 'email', 'contact_number']
+
+    def form_valid(self, form):
+        """Validate the form"""
+        data = form.save(commit=True)
+        data.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        """Redirect user to dashboard"""
+        return reverse('home')
+
+
+class TransactionList(ListView):
+    """View an account in detail"""
+    model = Transaction
+    template_name = 'main/transaction_list.html'
+
+    def get_queryset(self):
+        return get_list_or_404(Transaction, account_num=self.kwargs['number'],
+                               time__gte=datetime.now()-timedelta(days=30))
+
+
+class CreateTransfer(CreateView):
+    """Allow a user to transfer money between bank account"""
+    model = Transaction
+    fields = ['account_num', 'amount']
+    template_name = 'main/transfer.html'
+
+    def form_valid(self, form):
+        """Validate the form"""
+        data = form.save(commit=False)
+        data.customer = self.request.user
+        withdraw_account = Account.objects.get(account_number=self.kwargs['number'])
+        if data.account_num == withdraw_account:
+            return redirect(reverse('invalid_transfer'))
+        withdraw_account_balance = withdraw_account.balance - data.amount
+        Account.objects.filter(account_number=self.kwargs['number']).update(balance=withdraw_account_balance)
+        deposit_account_balance = data.account_num.balance + data.amount
+        Account.objects.filter(account_number=data.account_num.account_number).update(balance=deposit_account_balance)
+        data.current_balance = deposit_account_balance
+        data.description = 'Transfer'
+        data.trans_type = 'Deposit'
+        data.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        """Redirect the user to the successful page"""
+        return reverse('home')
+
+
+class SuccessfulTransfer(TemplateView):
+    """Inform the user the transfer was successful"""
+    template_name = 'success/successful_transfer'
+
+
+class InvalidTransfer(TemplateView):
+    """Let the user know that is a invalid transfer"""
+    template_name = 'errors/invalid_transfer.html'

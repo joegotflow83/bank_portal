@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block content %}
+<h3>Please fill out your user information</h3>
+<form method="post" action="{% url 'setup_info' %}">
+  {% csrf_token %}
+  {{ form | as_bootstrap }}
+  <input type="submit" value="Create Info" class="btn btn-success">
+</form>
+{% endblock %}

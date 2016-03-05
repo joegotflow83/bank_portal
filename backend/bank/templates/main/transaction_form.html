@@ -4,7 +4,7 @@
 
 {% block content %}
 <h3>Create a new transaction</h3>
-<form method="post" action="{% url 'create_transaction' %}">
+<form method="post" action="">
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Create Transaction" class="btn btn-success">

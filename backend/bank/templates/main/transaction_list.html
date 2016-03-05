@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Transactions{% endblock title %}
+
+{% block content %}
+<h3>List of your transactions under this account</h3>
+{% for trans in object_list %}
+<table class="table">
+  <tr>
+    <th>Transaction Type</th>
+    <th>Current Balance</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Date and Time</th>
+  </tr>
+  <tr>
+    <td>{{ trans.trans_type }}</td>
+    <td>{{ trans.current_balance }}</td>
+    <td>{{ trans.amount }}</td>
+    <td>{{ trans.description }}</td>
+    <td>{{ trans.time }}</td>
+  </tr>
+</table>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block content%}
+<h3>Upate your user info</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form | as_bootstrap }}
+  <input type="submit" value="Update Info" class="btn btn-success">
+</form>
+{% endblock %}
