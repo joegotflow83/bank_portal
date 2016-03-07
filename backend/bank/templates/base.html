@@ -4,7 +4,8 @@
     <title>{% block title %}{% endblock title %}</title>
     <!-- Imports -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {% block extracss %}{% endblock %}
+    {% block extracss %}
+    {% endblock %}
   </head>
 	<body>
     <ul class="nav nav-pills">
@@ -13,14 +14,33 @@
       <li role="presentation"><a href="{% url 'setup_account' %}">Create Bank Account</a></li>
       <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
     {% else %}
+      <li role="presentation"><a href="{% url 'index' %}">Index</a></li>
+      <li role="presentation"><a href="{% url 'about' %}">About</a></li>
       <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
       <li role="presentation"><a href="{% url 'signup' %}">Sign Up</a></li>
     {% endif %}
 		</ul>
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
+    <style>
+      .nav {
+        padding-top: 20px;
+        padding-left: 100px;
+        background-color: #00BCD4;
+      }
+
+      .purple-text {
+        color: #512DA8;
+      }
+
+      a {
+        color: #512DA8;
+      }
+
+      .jumbotron {
+        background-image: url(http://levick.com/sites/default/files/styles/vimeo-large/public/banking%5B2%5D.jpg?itok=He4q2rcR);
+      }
+    </style>
+    {% block content %}
+    {% endblock %}
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -3,6 +3,8 @@
 {% block title %}Invalid Transaction{% endblock title %}
 
 {% block content %}
+<div class="container">
 <h4>Transaction Failed, You do not have the sufficient funds to perform that transaction</h4>
 <a href="{% url 'home' %}" class="btn btn-success">Go Home</a>
+</div>
 {% endblock %}

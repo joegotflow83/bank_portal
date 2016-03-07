@@ -3,10 +3,12 @@
 {% block title %}Create Bank Account{% endblock title %}
 
 {% block content %}
+<div class="container">
 <h3>Create The Type of Bank Account You Would Like To Setup</h3>
 <form method="post" action="{% url 'setup_account' %}">
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Create Account!" class="btn btn-success">
 </form>
+</div>
 {% endblock %}

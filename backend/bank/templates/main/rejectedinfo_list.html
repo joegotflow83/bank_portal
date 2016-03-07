@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Rejected Info{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <h3>Rejected Transactions</h3>
+  {% for reject in object_list %}
+  <p><strong>Description: </strong> {{ reject.information }} - {{ reject.attempted_time }} </p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Deleted Account{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <h3>Your account has been successfully removed</h3>
+  <p>Go to the <a href="{% url 'home' %}" class="btn btn-success">Dashboard</a></p>
+</div>
+{% endblock %}

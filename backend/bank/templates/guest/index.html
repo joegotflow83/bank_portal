@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Cylon Banking{% endblock title %}
+
+{% block content %}
+<div class="jumbotron text-center purple-text">
+  <h1>Cylon Banking</h1>
+  <h3><em>Bank with the highest confidence using the tightest security</em></h3>
+  <a href="{% url 'about' %}" class="btn btn-success">Learn More</a>
+  <a href="#" class="btn btn-info">Contact Us</a>
+  <br><br><br><br><br>
+</div>
+
+<div class="container">
+  <div class="col-md-4">
+    <h3>Why Choose Us?</h3>
+    <p>
+    Quae libero nonummy, dictum tempor donec aenean nullam, velit leo. Id mi eu arcu, sollicitudin velit nec ut a interdum, sociis ultrices tincidunt a. Dui velit in enim senectus ut augue, sed diam fusce, mattis mattis feugiat erat ac ipsum pharetra. Suspendisse curabitur magna a molestie, eget vestibulum vel praesent vitae sed. Sem erat egestas eget sodales, mauris quisque cursus dis placerat suscipit nulla, suspendisse pulvinar leo elementum eget, metus id sapien cursus augue fusce, et non occaecat.
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h3>Strong Security</h3>
+    <p>
+      Quae libero nonummy, dictum tempor donec aenean nullam, velit leo. Id mi eu arcu, sollicitudin velit nec ut a interdum, sociis ultrices tincidunt a. Dui velit in enim senectus ut augue, sed diam fusce, mattis mattis feugiat erat ac ipsum pharetra. Suspendisse curabitur magna a molestie, eget vestibulum vel praesent vitae sed. Sem erat egestas eget sodales, mauris quisque cursus dis placerat suscipit nulla, suspendisse pulvinar leo elementum eget, metus id sapien cursus augue fusce, et non occaecat.
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h3>Easy Transition</h3>
+    <p>
+      Quae libero nonummy, dictum tempor donec aenean nullam, velit leo. Id mi eu arcu, sollicitudin velit nec ut a interdum, sociis ultrices tincidunt a. Dui velit in enim senectus ut augue, sed diam fusce, mattis mattis feugiat erat ac ipsum pharetra. Suspendisse curabitur magna a molestie, eget vestibulum vel praesent vitae sed. Sem erat egestas eget sodales, mauris quisque cursus dis placerat suscipit nulla, suspendisse pulvinar leo elementum eget, metus id sapien cursus augue fusce, et non occaecat.
+    </p>
+  </div>
+</div>
+<style>
+  .purple-text {
+    color: #512DA8;
+  }
+</style>
+{% endblock %}

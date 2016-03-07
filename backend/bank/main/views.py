@@ -4,7 +4,17 @@ from django.views.generic import View, TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from datetime import datetime, timedelta
 
-from .models import Transaction, Account, UserInfo
+from .models import Transaction, Account, UserInfo, RejectedInfo
+
+
+class Index(TemplateView):
+    """Display this page when users first access the site"""
+    template_name = 'guest/index.html'
+
+
+class About(TemplateView):
+    """Display information about the company"""
+    template_name = 'guest/about.html'
 
 
 class Home(TemplateView):
@@ -32,6 +42,7 @@ class CreateTransaction(CreateView):
         data.account_num = account
         if data.trans_type == 'Withdraw':
             if data.amount > account.balance:
+                RejectedInfo.objects.create(cust=self.request.user, information='Withdraw more than account has.')
                 return render(self.request, 'errors/invalid_transaction.html')
             else:
                 new_balance = account.balance - data.amount
@@ -125,7 +136,7 @@ class TransactionDetail(DetailView):
     model = Transaction
 
     def get_queryset(self):
-        return Transaction.objects.filter(pk=self.kwargs['pk'])
+        return Transaction.objects.filter(customer=self.request.user)
 
 
 class CreateTransfer(CreateView):
@@ -140,8 +151,10 @@ class CreateTransfer(CreateView):
         data.customer = self.request.user
         withdraw_account = Account.objects.get(account_number=self.kwargs['number'])
         if data.account_num == withdraw_account:
+            RejectedInfo.objects.create(cust=self.request.user, information='Transfer between the same account.')
             return redirect(reverse('invalid_transfer'))
         elif data.amount > withdraw_account.balance:
+            RejectedInfo.objects.create(cust=self.request.user, information='Over draw on account')
             return redirect(reverse('invalid_transfer'))
         withdraw_account_balance = withdraw_account.balance - data.amount
         Account.objects.filter(account_number=self.kwargs['number']).update(balance=withdraw_account_balance)
@@ -178,3 +191,19 @@ class ReactivateAccount(View):
     def get(self, request, number):
         Account.objects.filter(account_number=number).update(active=True)
         return render(request, 'success/reactivate.html')
+
+
+class DeleteAccount(View):
+    """Delete the users bank account"""
+    def get(self, request, number):
+        account = Account.objects.get(account_number=self.kwargs['number'])
+        if account.balance > 0:
+            RejectedInfo.objects.create(cust=request.user, information='Delete account with money left in account.')
+            return render(request, 'errors/invalid_deletion.html')
+        account.delete()
+        return render(request, 'success/destroy.html')
+
+
+class RejectedList(ListView):
+    """Display rejected transactions on users accounts"""
+    model = RejectedInfo

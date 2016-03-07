@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
-
+{% load bootstrap_tags %}
 {% block title %}Login{% endblock title %}
 
 {% block content %}
+<div class="container">
 <h3>Create An Account With Us</h3>
 <form method="post" action="">
   {% csrf_token %}
-  {{ form }}
+  {{ form | as_bootstrap}}
   <input type="submit" value="Sign Up" class="btn btn-success">
 </form>
+</div>
 {% endblock %}

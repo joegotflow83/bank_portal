@@ -69,5 +69,10 @@ class RejectedInfo(models.Model):
 
     cust = models.ForeignKey(User)
     information = models.CharField(max_length=1000)
+    attempted_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+
+        ordering = ['-attempted_time']
 
 

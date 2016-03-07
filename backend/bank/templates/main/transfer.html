@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
 {% block content %}
+<div class="container">
 <h3>Transfer funds between accounts</h3>
 <p>Select the bank account you want to transfer the money too.</p>
 <form method="post">
@@ -8,4 +9,5 @@
   {{ form | as_bootstrap}}
   <input type="submit" value="Transfer Funds" class="btn btn-success">
 </form>
+</div>
 {% endblock %}

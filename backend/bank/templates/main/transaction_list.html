@@ -3,6 +3,7 @@
 {% block title %}Transactions{% endblock title %}
 
 {% block content %}
+<div class="container">
 <h3>List of your transactions under this account</h3>
 {% for trans in object_list %}
 <table class="table">
@@ -13,11 +14,12 @@
     <th>Amount</th>
   </tr>
   <tr>
-    <td><a href="{% url 'transaction_detail' trans.id %}" class="btn btn-success">View Details</a></td>
+    <td><a href="{% url 'transaction_detail' trans.id %}" class="btn btn-info">View Details</a></td>
     <td>{{ trans.trans_type }}</td>
     <td>{{ trans.current_balance }}</td>
     <td>{{ trans.amount }}</td>
   </tr>
 </table>
 {% endfor %}
+</div>
 {% endblock %}

@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock title %}
-{% block extracss %}
 
-{% endblock %}
 {% block content %}
-<h3>Welcome Back {{ request.user }}</h3>
+<div class="container">
+<h3 class="text-center">Welcome Back {{ request.user }}</h3>
 <div id="user-info" class="col-md-4">
-<h5>Personal Info:</h5>
+<h4>Personal Info:</h4>
   {% for data in userinfo %}
   <p>Username: {{ data.user.username }}</p>
   <p>First Name: {{ data.first_name }}</p>
@@ -15,8 +14,11 @@
   <p>Address: {{ data.address }}</p>
   <p>Contact Number: {{ data.contact_number }} </p>
   {% endfor %}
-  <h5>Update your user info</h5>
+  <h4>Update your user info</h4>
   <a href="{% url 'update_info' request.user.id %}" class="btn btn-success">Update Info</a>
+  <br><br><br>
+  <h4>View Your Rejected Transactions</h4>
+  <a href={% url 'rejects' %} class="btn btn-info">Rejected Transactions</a>
 </div>
 <div class="col-md-8">
 <h3>Here is a list of your active accounts</h3>
@@ -31,7 +33,7 @@
   </tr>
   <tr>
     <td><a href="{% url 'create_transaction' account.account_number %}" class="btn btn-success">Create Transaction</a>
-        <a href="{% url 'transfer' account.account_number %}" class="btn btn-primary">Transfer Funds</a>
+        <a href="{% url 'transfer' account.account_number %}" class="btn btn-info">Transfer Funds</a>
     <a href="{% url 'disable_account' account.account_number %}" class="btn btn-danger">Disable Account</a></td>
     <td><a href="{% url 'transaction_list' account.account_number %}">{{ account.account_number }}</a></td>
     <td>{{ account.balance }}</td>
@@ -53,7 +55,8 @@
     <th>Account Type</th>
   </tr>
   <tr>
-    <td><a href="{% url 'reactivate_account' account.account_number %}" class="btn btn-success">Reactivate Account</a></td>
+    <td><a href="{% url 'reactivate_account' account.account_number %}" class="btn btn-success">Reactivate Account</a>
+        <a href="{% url 'delete' account.account_number %}" class="btn btn-danger">Delete Account</a></td>
     <td><a href="{% url 'transaction_list' account.account_number %}">{{ account.account_number }}</a></td>
     <td>{{ account.balance }}</td>
     <td>{{ account.account_type }}</td>
@@ -62,4 +65,10 @@
 {% endif %}
 {% endfor %}
 </div>
+</div>
+<style>
+  h4 {
+    padding-top: 20px;
+  }
+</style>
 {% endblock %}
